@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>和利雅姐姐的故事</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: #fff5f8;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff4081;
+            margin: 40px 0;
+            font-size: 2em;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .date {
+            color: #ff4081;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            margin: 15px 0;
+        }
+
+        img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .back-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ff4081;
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>和利雅姐姐的重要时刻</h1>
+
+        <div class="timeline-item">
+            <div class="date">2025-01-28</div>
+            <div class="content">
+                <h3>第一次认识</h3>
+                <p>加上利雅姐姐微信啦，Start From Here！</p>
+                <!-- <img src="meet.jpg" alt="相遇时刻"> -->
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="date">2025-02-04</div>
+            <div class="content">
+                <h3>约定在这一天见面啦</h3>
+                <p>期待！</p>
+                <!-- <img src="meet.jpg" alt="相遇时刻"> -->
+            </div>
+        </div>
+
+        <!-- 添加更多时间节点 -->
+    </div>
+
+    <div class="back-top">↑</div>
+
+    <script>
+        // 滚动检测
+        function checkVisible() {
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // 页面加载时检测
+        checkVisible();
+        
+        // 滚动时检测
+        window.addEventListener('scroll', checkVisible);
+
+        // 返回顶部按钮
+        window.addEventListener('scroll', () => {
+            document.querySelector('.back-top').style.display = 
+                window.scrollY > 500 ? 'block' : 'none';
+        });
+
+        document.querySelector('.back-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
